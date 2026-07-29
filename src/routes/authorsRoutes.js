@@ -1,30 +1,10 @@
 const { Router } = require("express");
+const { getAuthors } = require("../services/authorsService");
 
 const router = Router();
 
-const authors = [
-    {
-        id: 1,
-        name: "Ana García",
-        email: "ana@example.com",
-        bio: "Desarrolladora full-stack apasionada por Node.js",
-    },
-    {
-        id: 2,
-        name: "Carlos Ruiz",
-        email: "carlos@example.com",
-        bio: "Escritor técnico especializado en bases de datos",
-    },
-    {
-        id: 3,
-        name: "María López",
-        email: "maria@example.com",
-        bio: "Ingeniera de software con foco en APIs REST",
-    },
-];
-
 router.get("/", (req, res) => {
-    res.json(authors);
+    res.json(getAuthors());
 });
 
 module.exports = router;
