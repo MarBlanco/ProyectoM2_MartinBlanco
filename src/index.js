@@ -1,5 +1,4 @@
 const express = require("express");
-
 const authorsRoutes = require("./routes/authorsRoutes");
 const postsRoutes = require("./routes/postsRoutes");
 
