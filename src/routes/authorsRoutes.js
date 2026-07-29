@@ -3,8 +3,9 @@ const { getAuthors } = require("../services/authorsService");
 
 const router = Router();
 
-router.get("/", (req, res) => {
-    res.json(getAuthors());
+router.get("/", async (req, res) => {
+    const authors = await getAuthors();
+    res.json(authors);
 });
 
 module.exports = router;
