@@ -3,6 +3,7 @@ const {
     getAuthors,
     createAuthor,
     updateAuthor,
+    deleteAuthor,
 } = require("../services/authorsService");
 
 const router = Router();
@@ -20,6 +21,11 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
     const updatedAuthor = await updateAuthor(req.params.id, req.body);
     res.json(updatedAuthor);
+});
+
+router.delete("/:id", async (req, res) => {
+    const deletedAuthor = await deleteAuthor(req.params.id);
+    res.json(deletedAuthor);
 });
 
 module.exports = router;

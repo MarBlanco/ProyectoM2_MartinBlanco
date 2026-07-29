@@ -10,8 +10,8 @@ const createAuthor = async (author) => {
 
     const result = await pool.query(
         `INSERT INTO authors (name, email, bio)
-     VALUES ($1, $2, $3)
-     RETURNING *`,
+        VALUES ($1, $2, $3)
+        RETURNING *`,
         [name, email, bio]
     );
 
@@ -34,8 +34,20 @@ const updateAuthor = async (id, author) => {
     return result.rows[0];
 };
 
+const deleteAuthor = async (id) => {
+    const result = await pool.query(
+        `DELETE FROM authors
+        WHERE id = $1
+        RETURNING *`,
+        [id]
+    );
+
+    return result.rows[0];
+};
+
 module.exports = {
     getAuthors,
     createAuthor,
     updateAuthor,
+    deleteAuthor,
 };
