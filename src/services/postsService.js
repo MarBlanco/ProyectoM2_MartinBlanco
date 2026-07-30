@@ -11,8 +11,35 @@ const createPost = async (post) => {
     const result = await pool.query(
         `INSERT INTO posts (title, content, author_id)
         VALUES ($1, $2, $3)
-         RETURNING *`,
+        RETURNING *`,
         [title, content, author_id]
+    );
+
+    return result.rows[0];
+};
+
+const updatePost = async (id, post) => {
+    const { title, content, author_id } = post;
+
+    const result = await pool.query(
+        `UPDATE posts
+        SET title = $1,
+        content = $2,
+        author_id = $3
+        WHERE id = $4
+        RETURNING *`,
+        [title, content, author_id, id]
+    );
+
+    return result.rows[0];
+};
+
+const deletePost = async (id) => {
+    const result = await pool.query(
+        `DELETE FROM posts
+        WHERE id = $1
+        RETURNING *`,
+        [id]
     );
 
     return result.rows[0];
@@ -21,4 +48,6 @@ const createPost = async (post) => {
 module.exports = {
     getPosts,
     createPost,
+    updatePost,
+    deletePost,
 };
