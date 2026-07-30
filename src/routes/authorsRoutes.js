@@ -1,31 +1,83 @@
-const { Router } = require("express");
+const express = require("express");
+const router = express.Router();
+
 const {
     getAuthors,
+    getAuthorById,
     createAuthor,
     updateAuthor,
     deleteAuthor,
 } = require("../services/authorsService");
 
-const router = Router();
-
+// Obtener todos los autores
 router.get("/", async (req, res) => {
-    const authors = await getAuthors();
-    res.json(authors);
+    try {
+        const authors = await getAuthors();
+        res.json(authors);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 });
 
+// Obtener un autor por ID
+router.get("/:id", async (req, res) => {
+    try {
+        const author = await getAuthorById(req.params.id);
+
+        if (!author) {
+            return res.status(404).json({
+                message: "Autor no encontrado",
+            });
+        }
+
+        res.json(author);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Crear autor
 router.post("/", async (req, res) => {
-    const newAuthor = await createAuthor(req.body);
-    res.status(201).json(newAuthor);
+    try {
+        const author = await createAuthor(req.body);
+        res.status(201).json(author);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 });
 
+// Actualizar autor
 router.put("/:id", async (req, res) => {
-    const updatedAuthor = await updateAuthor(req.params.id, req.body);
-    res.json(updatedAuthor);
+    try {
+        const author = await updateAuthor(req.params.id, req.body);
+
+        if (!author) {
+            return res.status(404).json({
+                message: "Autor no encontrado",
+            });
+        }
+
+        res.json(author);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 });
 
+// Eliminar autor
 router.delete("/:id", async (req, res) => {
-    const deletedAuthor = await deleteAuthor(req.params.id);
-    res.json(deletedAuthor);
+    try {
+        const author = await deleteAuthor(req.params.id);
+
+        if (!author) {
+            return res.status(404).json({
+                message: "Autor no encontrado",
+            });
+        }
+
+        res.json(author);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 });
 
 module.exports = router;
