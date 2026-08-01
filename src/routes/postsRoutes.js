@@ -4,6 +4,7 @@ const router = express.Router();
 const {
     getPosts,
     getPostById,
+    getPostsByAuthor,
     createPost,
     updatePost,
     deletePost,
@@ -13,6 +14,16 @@ const {
 router.get("/", async (req, res) => {
     try {
         const posts = await getPosts();
+        res.json(posts);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Obtener posts por autor
+router.get("/author/:authorId", async (req, res) => {
+    try {
+        const posts = await getPostsByAuthor(req.params.authorId);
         res.json(posts);
     } catch (error) {
         res.status(500).json({ error: error.message });

@@ -16,6 +16,16 @@ const getPostById = async (id) => {
     return result.rows[0];
 };
 
+// Obtener posts por autor
+const getPostsByAuthor = async (authorId) => {
+    const result = await pool.query(
+        "SELECT * FROM posts WHERE author_id = $1 ORDER BY id",
+        [authorId]
+    );
+
+    return result.rows;
+};
+
 // Crear post
 const createPost = async ({ title, content, author_id }) => {
     const result = await pool.query(
@@ -56,6 +66,7 @@ const deletePost = async (id) => {
 module.exports = {
     getPosts,
     getPostById,
+    getPostsByAuthor,
     createPost,
     updatePost,
     deletePost,
