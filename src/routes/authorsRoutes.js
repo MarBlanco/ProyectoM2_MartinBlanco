@@ -4,6 +4,7 @@ const router = express.Router();
 const {
     getAuthors,
     getAuthorById,
+    getAuthorByEmail,
     createAuthor,
     updateAuthor,
     deleteAuthor,
@@ -44,6 +45,14 @@ router.post("/", async (req, res) => {
         if (!name || name.trim() === "") {
             return res.status(400).json({
                 message: "El nombre es obligatorio",
+            });
+        }
+
+        const existingAuthor = await getAuthorByEmail(email);
+
+        if (existingAuthor) {
+            return res.status(400).json({
+                message: "El email ya existe",
             });
         }
 

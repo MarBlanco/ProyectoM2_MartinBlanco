@@ -16,12 +16,22 @@ const getAuthorById = async (id) => {
     return result.rows[0];
 };
 
+// Buscar autor por email
+const getAuthorByEmail = async (email) => {
+    const result = await pool.query(
+        "SELECT * FROM authors WHERE email = $1",
+        [email]
+    );
+
+    return result.rows[0];
+};
+
 // Crear autor
 const createAuthor = async ({ name, email, bio }) => {
     const result = await pool.query(
         `INSERT INTO authors (name, email, bio)
-        VALUES ($1, $2, $3)
-        RETURNING *`,
+     VALUES ($1, $2, $3)
+     RETURNING *`,
         [name, email, bio]
     );
 
@@ -32,11 +42,11 @@ const createAuthor = async ({ name, email, bio }) => {
 const updateAuthor = async (id, { name, email, bio }) => {
     const result = await pool.query(
         `UPDATE authors
-        SET name = $1,
-        email = $2,
-        bio = $3
-        WHERE id = $4
-        RETURNING *`,
+     SET name = $1,
+         email = $2,
+         bio = $3
+     WHERE id = $4
+     RETURNING *`,
         [name, email, bio, id]
     );
 
@@ -56,6 +66,7 @@ const deleteAuthor = async (id) => {
 module.exports = {
     getAuthors,
     getAuthorById,
+    getAuthorByEmail,
     createAuthor,
     updateAuthor,
     deleteAuthor,
