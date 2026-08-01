@@ -39,7 +39,16 @@ router.get("/:id", async (req, res) => {
 // Crear autor
 router.post("/", async (req, res) => {
     try {
-        const author = await createAuthor(req.body);
+        const { name, email, bio } = req.body;
+
+        if (!name || name.trim() === "") {
+            return res.status(400).json({
+                message: "El nombre es obligatorio",
+            });
+        }
+
+        const author = await createAuthor({ name, email, bio });
+
         res.status(201).json(author);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -49,7 +58,19 @@ router.post("/", async (req, res) => {
 // Actualizar autor
 router.put("/:id", async (req, res) => {
     try {
-        const author = await updateAuthor(req.params.id, req.body);
+        const { name, email, bio } = req.body;
+
+        if (!name || name.trim() === "") {
+            return res.status(400).json({
+                message: "El nombre es obligatorio",
+            });
+        }
+
+        const author = await updateAuthor(req.params.id, {
+            name,
+            email,
+            bio,
+        });
 
         if (!author) {
             return res.status(404).json({
