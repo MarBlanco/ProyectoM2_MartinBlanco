@@ -1,13 +1,23 @@
 const pool = require("../config/db");
 
+// Obtener todos los posts
 const getPosts = async () => {
-    const result = await pool.query("SELECT * FROM posts");
+    const result = await pool.query("SELECT * FROM posts ORDER BY id");
     return result.rows;
 };
 
-const createPost = async (post) => {
-    const { title, content, author_id } = post;
+// Obtener un post por ID
+const getPostById = async (id) => {
+    const result = await pool.query(
+        "SELECT * FROM posts WHERE id = $1",
+        [id]
+    );
 
+    return result.rows[0];
+};
+
+// Crear post
+const createPost = async ({ title, content, author_id }) => {
     const result = await pool.query(
         `INSERT INTO posts (title, content, author_id)
         VALUES ($1, $2, $3)
@@ -18,9 +28,8 @@ const createPost = async (post) => {
     return result.rows[0];
 };
 
-const updatePost = async (id, post) => {
-    const { title, content, author_id } = post;
-
+// Actualizar post
+const updatePost = async (id, { title, content, author_id }) => {
     const result = await pool.query(
         `UPDATE posts
         SET title = $1,
@@ -34,11 +43,10 @@ const updatePost = async (id, post) => {
     return result.rows[0];
 };
 
+// Eliminar post
 const deletePost = async (id) => {
     const result = await pool.query(
-        `DELETE FROM posts
-        WHERE id = $1
-        RETURNING *`,
+        "DELETE FROM posts WHERE id = $1 RETURNING *",
         [id]
     );
 
@@ -47,6 +55,7 @@ const deletePost = async (id) => {
 
 module.exports = {
     getPosts,
+    getPostById,
     createPost,
     updatePost,
     deletePost,
