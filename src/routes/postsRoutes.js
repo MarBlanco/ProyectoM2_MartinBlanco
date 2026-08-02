@@ -64,6 +64,12 @@ router.post("/", async (req, res) => {
             });
         }
 
+        if (!author_id) {
+            return res.status(400).json({
+                message: "El author_id es obligatorio",
+            });
+        }
+
         const post = await createPost({
             title,
             content,
@@ -90,6 +96,12 @@ router.put("/:id", async (req, res) => {
         if (!content || content.trim() === "") {
             return res.status(400).json({
                 message: "El contenido es obligatorio",
+            });
+        }
+
+        if (!author_id) {
+            return res.status(400).json({
+                message: "El author_id es obligatorio",
             });
         }
 
