@@ -50,7 +50,20 @@ router.get("/:id", async (req, res) => {
 // Crear post
 router.post("/", async (req, res) => {
     try {
-        const post = await createPost(req.body);
+        const { title, content, author_id } = req.body;
+
+        if (!title || title.trim() === "") {
+            return res.status(400).json({
+                message: "El título es obligatorio",
+            });
+        }
+
+        const post = await createPost({
+            title,
+            content,
+            author_id,
+        });
+
         res.status(201).json(post);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -60,7 +73,19 @@ router.post("/", async (req, res) => {
 // Actualizar post
 router.put("/:id", async (req, res) => {
     try {
-        const post = await updatePost(req.params.id, req.body);
+        const { title, content, author_id } = req.body;
+
+        if (!title || title.trim() === "") {
+            return res.status(400).json({
+                message: "El título es obligatorio",
+            });
+        }
+
+        const post = await updatePost(req.params.id, {
+            title,
+            content,
+            author_id,
+        });
 
         if (!post) {
             return res.status(404).json({
