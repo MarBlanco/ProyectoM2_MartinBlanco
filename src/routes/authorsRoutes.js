@@ -11,17 +11,17 @@ const {
 } = require("../services/authorsService");
 
 // Obtener todos los autores
-router.get("/", async (req, res) => {
+router.get("/", async (req, res, next) => {
     try {
         const authors = await getAuthors();
         res.json(authors);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        next(error);
     }
 });
 
 // Obtener un autor por ID
-router.get("/:id", async (req, res) => {
+router.get("/:id", async (req, res, next) => {
     try {
         const author = await getAuthorById(req.params.id);
 
@@ -33,12 +33,12 @@ router.get("/:id", async (req, res) => {
 
         res.json(author);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        next(error);
     }
 });
 
 // Crear autor
-router.post("/", async (req, res) => {
+router.post("/", async (req, res, next) => {
     try {
         const { name, email, bio } = req.body;
 
@@ -60,12 +60,12 @@ router.post("/", async (req, res) => {
 
         res.status(201).json(author);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        next(error);
     }
 });
 
 // Actualizar autor
-router.put("/:id", async (req, res) => {
+router.put("/:id", async (req, res, next) => {
     try {
         const { name, email, bio } = req.body;
 
@@ -89,12 +89,12 @@ router.put("/:id", async (req, res) => {
 
         res.json(author);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        next(error);
     }
 });
 
 // Eliminar autor
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", async (req, res, next) => {
     try {
         const author = await deleteAuthor(req.params.id);
 
@@ -106,7 +106,7 @@ router.delete("/:id", async (req, res) => {
 
         res.json(author);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        next(error);
     }
 });
 

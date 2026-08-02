@@ -11,27 +11,27 @@ const {
 } = require("../services/postsService");
 
 // Obtener todos los posts
-router.get("/", async (req, res) => {
+router.get("/", async (req, res, next) => {
     try {
         const posts = await getPosts();
         res.json(posts);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        next(error);
     }
 });
 
 // Obtener posts por autor
-router.get("/author/:authorId", async (req, res) => {
+router.get("/author/:authorId", async (req, res, next) => {
     try {
         const posts = await getPostsByAuthor(req.params.authorId);
         res.json(posts);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        next(error);
     }
 });
 
 // Obtener un post por ID
-router.get("/:id", async (req, res) => {
+router.get("/:id", async (req, res, next) => {
     try {
         const post = await getPostById(req.params.id);
 
@@ -43,12 +43,12 @@ router.get("/:id", async (req, res) => {
 
         res.json(post);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        next(error);
     }
 });
 
 // Crear post
-router.post("/", async (req, res) => {
+router.post("/", async (req, res, next) => {
     try {
         const { title, content, author_id } = req.body;
 
@@ -78,12 +78,12 @@ router.post("/", async (req, res) => {
 
         res.status(201).json(post);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        next(error);
     }
 });
 
 // Actualizar post
-router.put("/:id", async (req, res) => {
+router.put("/:id", async (req, res, next) => {
     try {
         const { title, content, author_id } = req.body;
 
@@ -119,12 +119,12 @@ router.put("/:id", async (req, res) => {
 
         res.json(post);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        next(error);
     }
 });
 
 // Eliminar post
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", async (req, res, next) => {
     try {
         const post = await deletePost(req.params.id);
 
@@ -136,7 +136,7 @@ router.delete("/:id", async (req, res) => {
 
         res.json(post);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        next(error);
     }
 });
 
