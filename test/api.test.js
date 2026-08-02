@@ -17,9 +17,22 @@ test("POST /authors crea un autor", async () => {
         .send({
             name: "Autor Test",
             email: `autor${Date.now()}@test.com`,
-            bio: "Creado por Supertest"
+            bio: "Creado por Supertest",
         });
 
     assert.strictEqual(response.statusCode, 201);
     assert.strictEqual(response.body.name, "Autor Test");
+});
+
+test("POST /posts crea un post", async () => {
+    const response = await request(app)
+        .post("/posts")
+        .send({
+            title: `Post ${Date.now()}`,
+            content: "Contenido creado por Supertest",
+            author_id: 1,
+        });
+
+    assert.strictEqual(response.statusCode, 201);
+    assert.strictEqual(response.body.author_id, 1);
 });
