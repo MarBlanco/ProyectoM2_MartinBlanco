@@ -58,6 +58,12 @@ router.post("/", async (req, res) => {
             });
         }
 
+        if (!content || content.trim() === "") {
+            return res.status(400).json({
+                message: "El contenido es obligatorio",
+            });
+        }
+
         const post = await createPost({
             title,
             content,
@@ -78,6 +84,12 @@ router.put("/:id", async (req, res) => {
         if (!title || title.trim() === "") {
             return res.status(400).json({
                 message: "El título es obligatorio",
+            });
+        }
+
+        if (!content || content.trim() === "") {
+            return res.status(400).json({
+                message: "El contenido es obligatorio",
             });
         }
 
