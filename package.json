@@ -1,15 +1,12 @@
+
 {
   "name": "proyectom2_martinblanco",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "directories": {
-    "doc": "docs",
-    "test": "test"
-  },
+  "description": "Proyecto Integrador M2 - API REST con Express y PostgreSQL",
+  "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --test"
   },
   "keywords": [],
   "author": "",
@@ -19,5 +16,8 @@
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "pg": "^8.22.0"
+  },
+  "devDependencies": {
+    "supertest": "^7.1.4"
   }
 }
