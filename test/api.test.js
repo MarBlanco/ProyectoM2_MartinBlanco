@@ -36,3 +36,9 @@ test("POST /posts crea un post", async () => {
     assert.strictEqual(response.statusCode, 201);
     assert.strictEqual(response.body.author_id, 1);
 });
+
+test("DELETE /authors/:id devuelve 404 si el autor no existe", async () => {
+    const response = await request(app).delete("/authors/999999");
+
+    assert.strictEqual(response.statusCode, 404);
+});
