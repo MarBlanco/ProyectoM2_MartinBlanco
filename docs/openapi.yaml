@@ -1,0 +1,484 @@
+openapi: 3.0.3
+
+info:
+  title: MiniBlog API
+
+  description: |
+    API REST desarrollada como Proyecto Integrador del Módulo 2 de Henry.
+
+    **Desarrollador:** Martín Blanco
+
+    ## Tecnologías utilizadas
+
+    - Node.js
+    - Express.js
+    - PostgreSQL
+    - Swagger UI (OpenAPI 3.0)
+    - Supertest
+
+    ## Funcionalidades implementadas
+
+    - CRUD completo de Authors
+    - CRUD completo de Posts
+    - Validaciones de datos
+    - Manejo centralizado de errores
+    - Persistencia con PostgreSQL
+    - Tests automatizados con Supertest
+    - Documentación interactiva con Swagger UI
+
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:3000
+    description: Servidor Local
+
+tags:
+  - name: Authors
+    description: Gestión de autores.
+
+  - name: Posts
+    description: Gestión de publicaciones.
+
+paths:
+
+  /authors:
+
+    get:
+      tags:
+        - Authors
+
+      summary: Obtener todos los autores
+
+      description: Devuelve la lista completa de autores registrados.
+
+      responses:
+
+        "200":
+          description: Lista de autores obtenida correctamente.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Author"
+
+        "500":
+          description: Error interno del servidor.
+
+    post:
+      tags:
+        - Authors
+
+      summary: Crear un nuevo autor
+
+      description: Registra un nuevo autor en la base de datos.
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewAuthor"
+
+      responses:
+
+        "201":
+          description: Autor creado correctamente.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Author"
+
+        "400":
+          description: Datos inválidos.
+
+        "500":
+          description: Error interno del servidor.
+
+  /authors/{id}:
+
+    get:
+      tags:
+        - Authors
+
+      summary: Obtener un autor por ID
+
+      description: Devuelve la información de un autor específico.
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del autor.
+          schema:
+            type: integer
+
+      responses:
+
+        "200":
+          description: Autor encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Author"
+
+        "404":
+          description: Autor no encontrado.
+
+        "500":
+          description: Error interno del servidor.
+
+    put:
+      tags:
+        - Authors
+
+      summary: Actualizar un autor
+
+      description: Modifica la información de un autor existente.
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del autor.
+          schema:
+            type: integer
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewAuthor"
+
+      responses:
+
+        "200":
+          description: Autor actualizado correctamente.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Author"
+
+        "400":
+          description: Datos inválidos.
+
+        "404":
+          description: Autor no encontrado.
+
+        "500":
+          description: Error interno del servidor.
+
+    delete:
+      tags:
+        - Authors
+
+      summary: Eliminar un autor
+
+      description: Elimina un autor de la base de datos.
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del autor.
+          schema:
+            type: integer
+
+      responses:
+
+        "200":
+          description: Autor eliminado correctamente.
+
+        "404":
+          description: Autor no encontrado.
+
+        "500":
+          description: Error interno del servidor.
+
+  /posts:
+
+    get:
+      tags:
+        - Posts
+
+      summary: Obtener todos los posts
+
+      description: Devuelve la lista completa de publicaciones.
+
+      responses:
+
+        "200":
+          description: Lista de publicaciones obtenida correctamente.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Post"
+
+        "500":
+          description: Error interno del servidor.
+
+    post:
+      tags:
+        - Posts
+
+      summary: Crear un nuevo post
+
+      description: Registra una nueva publicación.
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewPost"
+
+      responses:
+
+        "201":
+          description: Publicación creada correctamente.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Post"
+
+        "400":
+          description: Datos inválidos.
+
+        "500":
+          description: Error interno del servidor.
+
+  /posts/{id}:
+
+    get:
+      tags:
+        - Posts
+
+      summary: Obtener un post por ID
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del post.
+          schema:
+            type: integer
+
+      responses:
+
+        "200":
+          description: Publicación encontrada.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Post"
+
+        "404":
+          description: Publicación no encontrada.
+
+        "500":
+          description: Error interno del servidor.
+
+    put:
+      tags:
+        - Posts
+
+      summary: Actualizar un post
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del post.
+          schema:
+            type: integer
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewPost"
+
+      responses:
+
+        "200":
+          description: Publicación actualizada correctamente.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Post"
+
+        "400":
+          description: Datos inválidos.
+
+        "404":
+          description: Publicación no encontrada.
+
+        "500":
+          description: Error interno del servidor.
+
+    delete:
+      tags:
+        - Posts
+
+      summary: Eliminar un post
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del post.
+          schema:
+            type: integer
+
+      responses:
+
+        "200":
+          description: Publicación eliminada correctamente.
+
+        "404":
+          description: Publicación no encontrada.
+
+        "500":
+          description: Error interno del servidor.
+
+  /posts/author/{authorId}:
+
+    get:
+      tags:
+        - Posts
+
+      summary: Obtener los posts de un autor
+
+      parameters:
+        - name: authorId
+          in: path
+          required: true
+          description: ID del autor.
+          schema:
+            type: integer
+
+      responses:
+
+        "200":
+          description: Lista de publicaciones del autor.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Post"
+
+        "404":
+          description: Autor no encontrado.
+
+        "500":
+          description: Error interno del servidor.
+
+components:
+
+  schemas:
+
+    Author:
+      type: object
+
+      properties:
+
+        id:
+          type: integer
+          example: 1
+
+        name:
+          type: string
+          example: Ana García
+
+        email:
+          type: string
+          example: ana@example.com
+
+        bio:
+          type: string
+          example: Desarrolladora Full Stack apasionada por Node.js.
+
+        created_at:
+          type: string
+          format: date-time
+
+    NewAuthor:
+      type: object
+
+      required:
+        - name
+        - email
+
+      properties:
+
+        name:
+          type: string
+          example: Juan Pérez
+
+        email:
+          type: string
+          example: juan@example.com
+
+        bio:
+          type: string
+          example: Backend Developer.
+
+    Post:
+      type: object
+
+      properties:
+
+        id:
+          type: integer
+          example: 1
+
+        title:
+          type: string
+          example: Introducción a Node.js
+
+        content:
+          type: string
+          example: Node.js es un entorno de ejecución para JavaScript.
+
+        author_id:
+          type: integer
+          example: 1
+
+        published:
+          type: boolean
+          example: true
+
+        created_at:
+          type: string
+          format: date-time
+
+    NewPost:
+      type: object
+
+      required:
+        - title
+        - content
+        - author_id
+
+      properties:
+
+        title:
+          type: string
+          example: Mi primer post
+
+        content:
+          type: string
+          example: Contenido de ejemplo.
+
+        author_id:
+          type: integer
+          example: 1
+
+        published:
+          type: boolean
+          example: true
