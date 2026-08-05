@@ -4,7 +4,6 @@ const router = express.Router();
 const {
     getAuthors,
     getAuthorById,
-    getAuthorByEmail,
     createAuthor,
     updateAuthor,
     deleteAuthor,
@@ -48,18 +47,20 @@ router.post("/", async (req, res, next) => {
             });
         }
 
-        const existingAuthor = await getAuthorByEmail(email);
-
-        if (existingAuthor) {
-            return res.status(400).json({
-                message: "El email ya existe",
-            });
-        }
-
-        const author = await createAuthor({ name, email, bio });
+        const author = await createAuthor({
+            name,
+            email,
+            bio,
+        });
 
         res.status(201).json(author);
     } catch (error) {
+        if (error.code === "23505") {
+            return res.status(409).json({
+                error: "El email ya está registrado",
+            });
+        }
+
         next(error);
     }
 });

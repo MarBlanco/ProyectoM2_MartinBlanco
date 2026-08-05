@@ -30,8 +30,8 @@ const getAuthorByEmail = async (email) => {
 const createAuthor = async ({ name, email, bio }) => {
     const result = await pool.query(
         `INSERT INTO authors (name, email, bio)
-     VALUES ($1, $2, $3)
-     RETURNING *`,
+        VALUES ($1, $2, $3)
+        RETURNING *`,
         [name, email, bio]
     );
 
