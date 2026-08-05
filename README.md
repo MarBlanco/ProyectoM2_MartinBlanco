@@ -4,7 +4,7 @@ API REST desarrollada con Node.js, Express y PostgreSQL para gestionar autores y
 
 ## Autor
 
-- **Nombre:** Martín Blanco
+**Martín Blanco**
 
 ## Descripción
 
@@ -66,7 +66,7 @@ git clone https://github.com/MarBlanco/ProyectoM2_MartinBlanco.git
 cd ProyectoM2_MartinBlanco
 ```
 
-3. Instalar dependencias.
+3. Instalar las dependencias.
 
 ```bash
 npm install
@@ -75,17 +75,12 @@ npm install
 ## Configuración de la base de datos
 
 1. Crear una base de datos llamada `miniblog`.
-
 2. Ejecutar el script `setup.sql` para crear las tablas.
-
-3. Ejecutar el script `seed.sql` para cargar los datos de ejemplo.
-
+3. Ejecutar el script `seed.sql` para cargar los datos iniciales.
 
 ## Variables de entorno
 
 Crear un archivo `.env` tomando como referencia el archivo `.env.example`.
-
-Ejemplo:
 
 ```env
 DB_HOST=localhost
@@ -111,21 +106,40 @@ http://localhost:3000
 
 ## Ejecutar los tests
 
-Para ejecutar las pruebas:
-
 ```bash
 npm test
 ```
 
 ## Documentación de la API
 
-La documentación está disponible mediante Swagger UI.
-
-Con la aplicación en ejecución, ingresar a:
+Con la aplicación en ejecución, acceder a:
 
 ```
 http://localhost:3000/api-docs
 ```
+
+## Deployment en Railway
+
+La aplicación fue desplegada en Railway utilizando un servicio para la API y una base de datos PostgreSQL.
+
+### URL de producción
+
+```
+https://proyectom2martinblanco-production.up.railway.app
+```
+
+### Variables de entorno
+
+En el entorno local se utilizan las variables `DB_HOST`, `DB_PORT`, `DB_USER`, `DB_PASSWORD` y `DB_NAME`.
+
+Para el despliegue en Railway se utiliza la variable `DATABASE_URL`.
+
+### Inicialización de la base de datos
+
+Una vez creada la base de datos en Railway, se ejecutaron los scripts:
+
+- `setup.sql` para crear las tablas.
+- `seed.sql` para cargar los datos iniciales.
 
 ## Registro de uso de IA
 
