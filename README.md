@@ -128,11 +128,19 @@ La aplicación fue desplegada en Railway utilizando un servicio para la API y un
 https://proyectom2martinblanco-production.up.railway.app
 ```
 
+Endpoints disponibles:
+
+- `/authors`
+- `/posts`
+- `/api-docs`
+
 ### Variables de entorno
 
-En el entorno local se utilizan las variables `DB_HOST`, `DB_PORT`, `DB_USER`, `DB_PASSWORD` y `DB_NAME`.
+#### Railway
 
-Para el despliegue en Railway se utiliza la variable `DATABASE_URL`.
+```env
+DATABASE_URL=${{Postgres.DATABASE_URL}}
+```
 
 ### Inicialización de la base de datos
 

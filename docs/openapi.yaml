@@ -32,6 +32,9 @@ servers:
   - url: http://localhost:3000
     description: Servidor Local
 
+  - url: https://proyectom2martinblanco-production.up.railway.app
+    description: Servidor Railway
+
 tags:
   - name: Authors
     description: Gestión de autores.
