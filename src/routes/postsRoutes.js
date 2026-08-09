@@ -50,7 +50,7 @@ router.get("/:id", async (req, res, next) => {
 // Crear post
 router.post("/", async (req, res, next) => {
     try {
-        const { title, content, author_id } = req.body;
+        const { title, content, author_id, published } = req.body;
 
         if (!title || title.trim() === "") {
             return res.status(400).json({
@@ -74,6 +74,7 @@ router.post("/", async (req, res, next) => {
             title,
             content,
             author_id,
+            published,
         });
 
         res.status(201).json(post);
@@ -85,7 +86,7 @@ router.post("/", async (req, res, next) => {
 // Actualizar post
 router.put("/:id", async (req, res, next) => {
     try {
-        const { title, content, author_id } = req.body;
+        const { title, content, author_id, published } = req.body;
 
         if (!title || title.trim() === "") {
             return res.status(400).json({
@@ -109,6 +110,7 @@ router.put("/:id", async (req, res, next) => {
             title,
             content,
             author_id,
+            published,
         });
 
         if (!post) {
