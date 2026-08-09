@@ -27,27 +27,28 @@ const getPostsByAuthor = async (authorId) => {
 };
 
 // Crear post
-const createPost = async ({ title, content, author_id }) => {
+const createPost = async ({ title, content, author_id, published }) => {
     const result = await pool.query(
-        `INSERT INTO posts (title, content, author_id)
-        VALUES ($1, $2, $3)
+        `INSERT INTO posts (title, content, author_id, published)
+        VALUES ($1, $2, $3, $4)
         RETURNING *`,
-        [title, content, author_id]
+        [title, content, author_id, published]
     );
 
     return result.rows[0];
 };
 
 // Actualizar post
-const updatePost = async (id, { title, content, author_id }) => {
+const updatePost = async (id, { title, content, author_id, published }) => {
     const result = await pool.query(
         `UPDATE posts
         SET title = $1,
         content = $2,
-        author_id = $3
-        WHERE id = $4
+        author_id = $3,
+        published = $4
+        WHERE id = $5
         RETURNING *`,
-        [title, content, author_id, id]
+        [title, content, author_id, published, id]
     );
 
     return result.rows[0];
