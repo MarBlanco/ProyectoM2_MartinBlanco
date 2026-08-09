@@ -20,8 +20,3 @@ app.use(errorHandler);
 
 module.exports = app;
 
-// app.use("/authors", authorsRoutes);
-// app.use("/posts", postsRoutes);
-// index dentro de routes
-
-// vitest/mod require * import/from
