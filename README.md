@@ -10,8 +10,8 @@ API REST desarrollada con **Node.js, Express y PostgreSQL** para gestionar autor
 
 ## 🚀 Demo en producción
 
-- **API:** https://proyectom2martinblanco-production.up.railway.app
-- **Swagger UI:** https://proyectom2martinblanco-production.up.railway.app/api-docs
+- **API:** [https://proyectom2martinblanco-production.up.railway.app](https://proyectom2martinblanco-production.up.railway.app)
+- **Swagger UI:** [https://proyectom2martinblanco-production.up.railway.app/api-docs](https://proyectom2martinblanco-production.up.railway.app/api-docs)
 
 ---
 
@@ -106,8 +106,8 @@ npm install
 ## 🗄️ Configuración de la base de datos
 
 1. Crear una base de datos llamada `miniblog`.
-2. Ejecutar el script `setup.sql` para crear las tablas.
-3. Ejecutar el script `seed.sql` para cargar los datos iniciales.
+2. Ejecutar el script `sql/setup.sql` para crear las tablas.
+3. Ejecutar el script `sql/seed.sql` para cargar los datos iniciales.
 
 ---
 
@@ -163,7 +163,7 @@ http://localhost:3000/api-docs
 
 ### Entorno de producción
 
-https://proyectom2martinblanco-production.up.railway.app/api-docs
+[https://proyectom2martinblanco-production.up.railway.app/api-docs](https://proyectom2martinblanco-production.up.railway.app/api-docs)
 
 ---
 
@@ -171,24 +171,24 @@ https://proyectom2martinblanco-production.up.railway.app/api-docs
 
 ### Authors
 
-| Método | Endpoint | Descripción |
-|---|---|---|
-| GET | `/authors` | Obtener todos los autores |
-| POST | `/authors` | Crear un nuevo autor |
-| GET | `/authors/:id` | Obtener un autor por ID |
-| PUT | `/authors/:id` | Actualizar un autor |
-| DELETE | `/authors/:id` | Eliminar un autor |
+| Método | Endpoint       | Descripción               |
+| ------ | -------------- | ------------------------- |
+| GET    | `/authors`     | Obtener todos los autores |
+| POST   | `/authors`     | Crear un nuevo autor      |
+| GET    | `/authors/:id` | Obtener un autor por ID   |
+| PUT    | `/authors/:id` | Actualizar un autor       |
+| DELETE | `/authors/:id` | Eliminar un autor         |
 
 ### Posts
 
-| Método | Endpoint | Descripción |
-|---|---|---|
-| GET | `/posts` | Obtener todos los posts |
-| POST | `/posts` | Crear un nuevo post |
-| GET | `/posts/:id` | Obtener un post por ID |
-| PUT | `/posts/:id` | Actualizar un post |
-| DELETE | `/posts/:id` | Eliminar un post |
-| GET | `/posts/author/:authorId` | Obtener los posts de un autor |
+| Método | Endpoint                  | Descripción                   |
+| ------ | ------------------------- | ----------------------------- |
+| GET    | `/posts`                  | Obtener todos los posts       |
+| POST   | `/posts`                  | Crear un nuevo post           |
+| GET    | `/posts/:id`              | Obtener un post por ID        |
+| PUT    | `/posts/:id`              | Actualizar un post            |
+| DELETE | `/posts/:id`              | Eliminar un post              |
+| GET    | `/posts/author/:authorId` | Obtener los posts de un autor |
 
 ---
 
@@ -214,8 +214,8 @@ DATABASE_URL=${{Postgres.DATABASE_URL}}
 
 Una vez creada la base de datos en Railway, se ejecutaron los scripts:
 
-- `setup.sql` para crear las tablas.
-- `seed.sql` para cargar los datos iniciales.
+- `sql/setup.sql` para crear las tablas.
+- `sql/seed.sql` para cargar los datos iniciales.
 
 ---
 
