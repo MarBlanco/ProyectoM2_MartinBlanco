@@ -171,24 +171,24 @@ http://localhost:3000/api-docs
 
 ### Authors
 
-| Método | Endpoint       | Descripción               |
-| ------ | -------------- | ------------------------- |
-| GET    | `/authors`     | Obtener todos los autores |
-| POST   | `/authors`     | Crear un nuevo autor      |
-| GET    | `/authors/:id` | Obtener un autor por ID   |
-| PUT    | `/authors/:id` | Actualizar un autor       |
-| DELETE | `/authors/:id` | Eliminar un autor         |
+| Método | Endpoint | Descripción |
+|---|---|---|
+| GET | `/authors` | Obtener todos los autores |
+| POST | `/authors` | Crear un nuevo autor |
+| GET | `/authors/:id` | Obtener un autor por ID |
+| PUT | `/authors/:id` | Actualizar un autor |
+| DELETE | `/authors/:id` | Eliminar un autor |
 
 ### Posts
 
-| Método | Endpoint                  | Descripción                   |
-| ------ | ------------------------- | ----------------------------- |
-| GET    | `/posts`                  | Obtener todos los posts       |
-| POST   | `/posts`                  | Crear un nuevo post           |
-| GET    | `/posts/:id`              | Obtener un post por ID        |
-| PUT    | `/posts/:id`              | Actualizar un post            |
-| DELETE | `/posts/:id`              | Eliminar un post              |
-| GET    | `/posts/author/:authorId` | Obtener los posts de un autor |
+| Método | Endpoint | Descripción |
+|---|---|---|
+| GET | `/posts` | Obtener todos los posts |
+| POST | `/posts` | Crear un nuevo post |
+| GET | `/posts/:id` | Obtener un post por ID |
+| PUT | `/posts/:id` | Actualizar un post |
+| DELETE | `/posts/:id` | Eliminar un post |
+| GET | `/posts/author/:authorId` | Obtener los posts de un autor |
 
 ---
 
