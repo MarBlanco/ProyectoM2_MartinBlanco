@@ -11,6 +11,10 @@ const app = express();
 
 app.use(express.json());
 
+app.get("/", (req, res) => {
+    res.send("API MiniBlog funcionando");
+});
+
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use("/authors", authorsRoutes);
@@ -19,4 +23,3 @@ app.use("/posts", postsRoutes);
 app.use(errorHandler);
 
 module.exports = app;
-

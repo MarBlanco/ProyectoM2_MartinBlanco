@@ -1,25 +1,52 @@
-# API MiniBlog
+# MiniBlog API
 
-API REST desarrollada con Node.js, Express y PostgreSQL para gestionar autores y publicaciones.
+API REST desarrollada con **Node.js, Express y PostgreSQL** para gestionar autores y publicaciones.
 
-## Autor
+**Proyecto Integrador — Módulo 2 de Henry**
 
-**Martín Blanco**
+**Autor:** Martín Blanco
 
-## Descripción
+---
+
+## 🚀 Demo en producción
+
+- **API:** https://proyectom2martinblanco-production.up.railway.app
+- **Swagger UI:** https://proyectom2martinblanco-production.up.railway.app/api-docs
+
+---
+
+## 📋 Descripción
 
 API REST desarrollada como trabajo integrador del Módulo 2 de Henry.
 
-Permite realizar operaciones CRUD sobre las entidades `authors` y `posts`, utilizando PostgreSQL como base de datos, documentación con Swagger/OpenAPI y pruebas automatizadas con Supertest.
+Permite realizar operaciones **CRUD** sobre las entidades `authors` y `posts`, utilizando PostgreSQL como base de datos, documentación con Swagger/OpenAPI y pruebas automatizadas con Supertest.
 
-## Requisitos
+---
+
+## 🛠️ Tecnologías utilizadas
 
 - Node.js
+- Express.js
 - PostgreSQL
-- Git
-- npm
+- Swagger UI (OpenAPI 3.0)
+- Supertest
 
-## Estructura del proyecto
+---
+
+## ✨ Funcionalidades
+
+- CRUD completo de `Authors`
+- CRUD completo de `Posts`
+- Validaciones de datos
+- Manejo centralizado de errores
+- Persistencia con PostgreSQL
+- Tests automatizados con Supertest
+- Documentación interactiva con Swagger UI
+- Deploy en Railway
+
+---
+
+## 📁 Estructura del proyecto
 
 ```text
 ProyectoM2_MartinBlanco/
@@ -52,33 +79,39 @@ ProyectoM2_MartinBlanco/
 └── README.md
 ```
 
-## Instalación
+---
 
-1. Clonar el repositorio.
+## ⚙️ Instalación
+
+### 1. Clonar el repositorio
 
 ```bash
 git clone https://github.com/MarBlanco/ProyectoM2_MartinBlanco.git
 ```
 
-2. Ingresar al proyecto.
+### 2. Ingresar al proyecto
 
 ```bash
 cd ProyectoM2_MartinBlanco
 ```
 
-3. Instalar las dependencias.
+### 3. Instalar las dependencias
 
 ```bash
 npm install
 ```
 
-## Configuración de la base de datos
+---
+
+## 🗄️ Configuración de la base de datos
 
 1. Crear una base de datos llamada `miniblog`.
 2. Ejecutar el script `setup.sql` para crear las tablas.
 3. Ejecutar el script `seed.sql` para cargar los datos iniciales.
 
-## Variables de entorno
+---
+
+## 🔐 Variables de entorno
 
 Crear un archivo `.env` tomando como referencia el archivo `.env.example`.
 
@@ -90,53 +123,88 @@ DB_PASSWORD=tu_password
 DB_NAME=miniblog
 ```
 
-## Ejecutar la aplicación
+---
 
-Para iniciar el servidor, ejecutar:
+## ▶️ Ejecutar la aplicación
+
+Para iniciar el servidor:
 
 ```bash
 npm start
 ```
 
-Si todo está configurado correctamente, la API estará disponible en:
+La API estará disponible en:
 
-```
+```text
 http://localhost:3000
 ```
 
-## Ejecutar los tests
+---
+
+## 🧪 Ejecutar los tests
 
 ```bash
 npm test
 ```
 
-## Documentación de la API
+Los tests automatizados utilizan **Node Test** y **Supertest**.
 
-Con la aplicación en ejecución, acceder a:
+---
 
-```
+## 📚 Documentación de la API
+
+La API cuenta con documentación interactiva mediante **Swagger UI**.
+
+### Entorno local
+
+```text
 http://localhost:3000/api-docs
 ```
 
-## Deployment en Railway
+### Entorno de producción
+
+https://proyectom2martinblanco-production.up.railway.app/api-docs
+
+---
+
+## 🔗 Endpoints
+
+### Authors
+
+| Método | Endpoint | Descripción |
+|---|---|---|
+| GET | `/authors` | Obtener todos los autores |
+| POST | `/authors` | Crear un nuevo autor |
+| GET | `/authors/:id` | Obtener un autor por ID |
+| PUT | `/authors/:id` | Actualizar un autor |
+| DELETE | `/authors/:id` | Eliminar un autor |
+
+### Posts
+
+| Método | Endpoint | Descripción |
+|---|---|---|
+| GET | `/posts` | Obtener todos los posts |
+| POST | `/posts` | Crear un nuevo post |
+| GET | `/posts/:id` | Obtener un post por ID |
+| PUT | `/posts/:id` | Actualizar un post |
+| DELETE | `/posts/:id` | Eliminar un post |
+| GET | `/posts/author/:authorId` | Obtener los posts de un autor |
+
+---
+
+## 🚂 Deployment en Railway
 
 La aplicación fue desplegada en Railway utilizando un servicio para la API y una base de datos PostgreSQL.
 
 ### URL de producción
 
-```
+```text
 https://proyectom2martinblanco-production.up.railway.app
 ```
 
-Endpoints disponibles:
-
-- `/authors`
-- `/posts`
-- `/api-docs`
-
 ### Variables de entorno
 
-#### Railway
+En Railway se utiliza:
 
 ```env
 DATABASE_URL=${{Postgres.DATABASE_URL}}
@@ -149,9 +217,11 @@ Una vez creada la base de datos en Railway, se ejecutaron los scripts:
 - `setup.sql` para crear las tablas.
 - `seed.sql` para cargar los datos iniciales.
 
-## Registro de uso de IA
+---
 
-Durante el desarrollo del proyecto se utilizó ChatGPT como herramienta de apoyo para:
+## 🤖 Registro de uso de IA
+
+Durante el desarrollo del proyecto se utilizó **ChatGPT** como herramienta de apoyo para:
 
 - Comprender conceptos de Express, PostgreSQL y consultas SQL.
 - Resolver dudas durante la implementación de los endpoints CRUD.
